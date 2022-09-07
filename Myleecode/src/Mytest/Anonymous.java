@@ -1,10 +1,10 @@
 package Mytest;
 
-class Polygon {
+   class Polygon {
 	   public void display() {
 	      System.out.println("在 Polygon 类内部");
 	   }
-	}
+	 }
 
 	class AnonymousDemo {
 	   public void createClass() {
