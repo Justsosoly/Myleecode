@@ -66,6 +66,13 @@ public class MergeTwoSortLinkedList {
     	
     	SinglyLinkedListNode sorthead=null;
     	
+    	while(head1!=null&&head2!=null)
+    	{
+    		
+    		
+    		
+    	}
+    	
         return sorthead;
 
     }
