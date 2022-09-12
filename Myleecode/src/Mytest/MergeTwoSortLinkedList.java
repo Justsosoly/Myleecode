@@ -64,15 +64,43 @@ public class MergeTwoSortLinkedList {
      */
     static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
     	
-    	SinglyLinkedListNode sorthead=null;
+ 
+    	SinglyLinkedList sortlist=new SinglyLinkedList();
     	
-    	while(head1!=null&&head2!=null)
+    	while(head1!=null||head2!=null)
     	{
+    		int sortdata=0;
+    		if(head1==null&&head2!=null)
+    		{
+    			sortdata=head2.data;
+    			//if(head2.next!=null)
+    			head2=head2.next;
     		
+    		}
+    		if(head2==null&&head1!=null)
+    			{
+    			sortdata=head1.data;
+    			//if(head1.next!=null)
+    		    head1=head1.next;
     		
-    		
+    			}    		
+    		if(head1!=null&&head2!=null)
+    		{
+    		if(head1.data>head2.data)
+    		{
+    			sortdata=head2.data;
+    		    head2=head2.next;
+    		}	
+    			else
+    		{
+    			sortdata=head1.data;
+    			head1=head1.next;
+    		}
+    		}
+    		sortlist.insertNode(sortdata);
     	}
     	
+       	SinglyLinkedListNode sorthead=sortlist.head;
         return sorthead;
 
     }
@@ -80,7 +108,7 @@ public class MergeTwoSortLinkedList {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    //    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int tests = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -112,11 +140,11 @@ public class MergeTwoSortLinkedList {
 
             SinglyLinkedListNode llist3 = mergeLists(llist1.head, llist2.head);
 
-            printSinglyLinkedList(llist3, " ", bufferedWriter);
-            bufferedWriter.newLine();
+   //         printSinglyLinkedList(llist3, " ", bufferedWriter);
+  //          bufferedWriter.newLine();
         }
 
-        bufferedWriter.close();
+ //       bufferedWriter.close();
 
         scanner.close();
     }
