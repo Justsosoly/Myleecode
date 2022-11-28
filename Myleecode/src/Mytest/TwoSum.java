@@ -16,8 +16,17 @@ public class TwoSum {
     	int target=9;
     	
     	
-    	TwoSum t=new TwoSum();
-    	t.twoSum(nums,target);
+    
+    	
+    	if(10==10||(target++)==10)
+    		 System.out.println("1 the target is:"+target);
+    	
+    	if(10==10|(target++)==9)
+   		 System.out.println("2 the target is:"+target);
+   	
+    	
+    	
+    	
     	
     }
 
