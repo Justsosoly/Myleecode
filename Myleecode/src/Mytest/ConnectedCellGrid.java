@@ -37,7 +37,7 @@ class ConnectedCellGridResult {
     	   {
     		   if(matrix.get(i).get(j)==1)
     		   {
-    			   
+    			   result++;
     		   }
     		   
     	   }
