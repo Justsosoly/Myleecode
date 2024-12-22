@@ -23,7 +23,69 @@ class AlmostSortedResult {
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
-    public static void almostSorted(List<Integer> arr) {
+	 public static void almostSorted(List<Integer> arr) {
+	 
+		 
+
+	      List<Integer> list=new ArrayList<Integer>();
+	     List<Integer> flag=new ArrayList<Integer>();
+	      for(Integer x:arr)
+	      {
+	       list.add(x) ;
+	      }
+	      Collections.sort(list);
+	      
+	      for(int i=0;i<arr.size();i++)
+	      {
+	        if(list.get(i)!=arr.get(i))
+	        {
+	          flag.add(i+1);
+	        }
+	      }
+	     
+	     if(flag.size()==0) 
+	     System.out.println("yes");
+	     
+	     else if(flag.size()==2)
+	     {
+	  System.out.println("yes");
+	  System.out.println("swap "+flag.get(0)+" "+flag.get(1));
+	     }
+	    
+	     else if(flag.size()>2)
+	     {
+	       
+	       int size=flag.size();
+	       int count=0;
+	       
+	       for(int j=0;j<size;j++)
+	       {
+	          int start=arr.get(flag.get(j)-1);
+	          int end=list.get(flag.get(size-j-1)-1);
+ 	    	   
+	    	   if(start==end)
+	         {
+	           count++;
+	         }
+	       }
+	       if(count==size)
+	       {
+	     System.out.println("yes");
+	    System.out.println("reverse "+flag.get(0)+" "+flag.get(size-1));
+	       }
+	       else 
+		    	 System.out.println("no");
+	     }
+	     
+		 
+	 }
+	
+	
+	
+	
+	
+	
+    public static void almostSorted2(List<Integer> arr) {
     // Write your code here
     	int n=arr.size();
     	List<Integer>flag= new ArrayList<Integer>();
@@ -50,6 +112,8 @@ class AlmostSortedResult {
     		}
     		
     	}
+    	
+    	
     	if(asc==(n-1))
     		{
     		System.out.println("yes");

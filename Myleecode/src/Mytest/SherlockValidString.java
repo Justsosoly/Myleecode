@@ -52,27 +52,36 @@ class SherlockValidStringResult {
        switch (nummap.size())
        {
          case 1: return "YES";
-         case 2:
+         case 2://if delete one letter,could be the YES
          {
-        	//have number 1
-      	   for(Integer outlier:nummap.keySet())
-      	  {
-      		  listkey.add(outlier);
-      		  listvalue.add(nummap.get(outlier));
-      		
-      	  }
-      	  //subtract =1
-      	    if( (listvalue.get(0)==1)&&(listkey.get(0)==1)||(listvalue.get(1)==1)&&listkey.get(1)==1)
-      		 return "YES";
-      	   
-      		 if( Math.abs(listkey.get(0)-listkey.get(1))==1)
-      		 {
-      		     if(listvalue.get(0)==1||listvalue.get(1)==1)
-      			 return "YES";
-      		 }
-      		 else 
-      			 return "NO";
-      	  }  
+        	 int [][]frequency=new int[2][2];
+             int i=0;
+             
+      	for(Integer key:nummap.keySet())
+      	{
+      		frequency[i][0]=key;
+      		frequency[i][1]=nummap.get(key);
+      		i++;
+      		if(key==1&&nummap.get(key)==1)
+      		{
+      			return "YES";
+      		}
+      	}
+      	
+      	
+  
+      	if( Math.abs( frequency[0][0]-frequency[1][0] )==1   )
+      	{
+      		if(frequency[0][1]==1||frequency[1][1]==1)
+      		return "YES";
+      	}
+      	else
+      		return "NO";
+        	 
+        	 
+        	 
+        	 
+         }  
          
         default:  return "NO";
        

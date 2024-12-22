@@ -64,7 +64,51 @@ public class MergeTwoSortLinkedList {
      */
     static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
     	
- 
+    	SinglyLinkedList sortlist=new SinglyLinkedList();
+    	  while(head1!=null||head2!=null)
+    	  {
+    	   
+    		  if(head1==null&&head2!=null)
+    		  {
+    	       sortlist.insertNode(head2.data);
+    	       head2=head2.next;
+    	       continue;
+    	      
+    		  }
+    	     if(head2==null&&head1!=null) 
+    	     {
+    	       sortlist.insertNode(head1.data);
+    	        head1=head1.next;
+    	        continue;
+    	     
+    	     }
+    		  
+    		  if(head1.data<head2.data)
+    	   {
+    	      sortlist.insertNode(head1.data);
+    	       head1=head1.next;
+    	   }
+    	   else
+    	   {
+    	     sortlist.insertNode(head2.data);
+    	       head2=head2.next;
+    	   }
+    	   
+    	   
+    	  }
+    	  
+
+    	    return sortlist.head;
+    	
+
+    }
+
+    
+    
+    
+    static SinglyLinkedListNode mergeLists2(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+    	
+    	 
     	SinglyLinkedList sortlist=new SinglyLinkedList();
     	
     	while(head1!=null||head2!=null)
@@ -104,7 +148,6 @@ public class MergeTwoSortLinkedList {
         return sorthead;
 
     }
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {

@@ -21,40 +21,8 @@ class SherlockAnagramsResult {
     // Write your code here
     	
     	int result=0;
-    	/*
-    	 HashMap<String,Integer> word=new HashMap<String,Integer> ();
     	
-    	
-    	 for(int i=0;i<s.length();i++)
-    		 
-    	 {
-    		 int index=1;
-    		 String temp=String.valueOf(s.charAt(i));
-    		 
-    		 if(word.get(temp)==null)
-    		 {
-    			 word.put(temp, index);
-    			 index++;
-    		 }
-    		 
-    		 else
-    		 {
-    		     int num=(int)word.get(temp)+1;
-    			 word.replace(temp, num);
-    		 }
-    	 }
-    	 
-    	 for(String key :word.keySet())
-    	 {
-    		 
-    		 int value=word.get(key);
-    		 result+=(value*(value-1))/2;
-    		 
-    	 }
-    	 
-    	 System.out.println(result);
-    	 
-    	 */
+
     	
     	 HashMap<String, Integer> map= new HashMap<>();
     	 
@@ -69,7 +37,9 @@ class SherlockAnagramsResult {
                      map.put(val, 1);
              }
          }
+         
          int anagramPairCount = 0;
+         
          for(String key: map.keySet()){
              int n = map.get(key);
              anagramPairCount += (n * (n-1))/2;
@@ -77,8 +47,6 @@ class SherlockAnagramsResult {
          System.out.println(anagramPairCount);
      
     	
-    	
-    	 
          return result;
          
     }

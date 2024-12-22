@@ -14,8 +14,63 @@ class MaxSubarrayResult {
      * The function is expected to return an INTEGER_ARRAY.
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
-
-    public static List<Integer> maxSubarray(List<Integer> arr) {
+	
+	//第二次写的
+	 public static List<Integer> maxSubarray(List<Integer> arr) {
+		 
+		
+		 
+		 
+		 List<Integer> result=new ArrayList<>();
+		 Integer subarraysum=0,subseqsum=0;
+		     
+		     for(Integer z:arr)
+		     {
+		       if(z>0)
+		       subseqsum+=z;
+		     }
+		     if(subseqsum==0)
+		    subseqsum=Collections.max(arr);
+		     
+		     
+		     Integer max_sofar=0;
+		     Integer max_here=0;
+		     
+		     for(int i=0;i<arr.size();i++)
+		     {
+		       Integer x=arr.get(i);
+		        max_here+=x;
+		            
+		        if(max_here<0)
+		        {
+		          max_here=0;
+		          continue;
+		        }
+		        else
+		        {
+		          if(max_here>max_sofar)
+		          max_sofar=max_here;
+		        }
+		        System.out.println("max_sofar"+max_sofar);
+		         System.out.println("max_here"+max_here);
+		       
+		     }
+		     if(max_sofar==0)
+		     max_sofar=Collections.max(arr);
+		     subarraysum=max_sofar;
+		     
+		  
+		     
+		    
+		    result.add(subarraysum);
+		    result.add(subseqsum);
+		    return result;
+		 
+		 
+	 }
+	
+// 第一次写的
+    public static List<Integer> maxSubarray2(List<Integer> arr) {
     // Write your code here
     	List<Integer> sumlist=new ArrayList<Integer>();
     	
@@ -24,10 +79,6 @@ class MaxSubarrayResult {
     	int subsequencesum=0;
     	int subarraysum=0;
     	int flag=0;
-    	
-
-    	
-    	
     	
     	
     	for(int j:arr)
@@ -57,7 +108,7 @@ class MaxSubarrayResult {
         	if(i>0)
         		subsequencesum+=i;
         	
-        }
+        }//都是大于0的数
         
         
   //This is because continuing with a negative sum is way worse than restarting with a new range
@@ -100,12 +151,12 @@ class MaxSubarrayResult {
             max_ending_here += a[i];
  
             if (max_so_far < max_ending_here) {
-                max_so_far = max_ending_here;
+                max_so_far = max_ending_here;//max_so_far 取目前为止最大的那段
                 start = s;
                 end = i;
             }
  
-            if (max_ending_here < 0) {
+            if (max_ending_here < 0) {//出现小于0，则从下一个数组开始
                 max_ending_here = 0;
                 s = i + 1;
             }

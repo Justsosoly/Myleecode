@@ -14,8 +14,65 @@ class RadioTransmittersResult {
 	 * The function is expected to return an INTEGER. The function accepts following
 	 * parameters: 1. INTEGER_ARRAY x 2. INTEGER k
 	 */
-
+	
+	
+	
 	public static int hackerlandRadioTransmitters(List<Integer> x, int k) {
+		  int result=0;
+	      int n=x.size();
+	      Collections.sort(x);
+	    
+	      int left=x.get(0);
+	      int radio=left+k;
+	      int right=radio+k;
+	      int i=0;
+	      
+	      
+	    while(i<n)
+	    
+	  {
+	  
+	     radio=left+k;
+	    	
+	     while(i<n&&x.get(i)<=radio)//accrod the left+k to find the ratdio
+	     {
+	    	 i++;
+	     }
+
+		     radio=x.get(i-1);
+		     
+		     System.out.println("radio build="+radio);
+		     result++;
+		 
+		     
+		     //move right
+		     right=radio+k;
+		    // left=right+1;
+		   //  radio=left+k;
+		     
+		 while(i<n&&x.get(i)<=right)//accrod the left+k to find the ratdio
+		  {
+		    	 i++;
+		  }
+		 right=x.get(i-1);
+		
+		if(i>n-1) 
+			left=x.get(n-1);
+		else
+			left=x.get(i);
+		
+	    }
+	    System.out.println("result="+result);
+	    return result;
+	}
+
+	
+	
+	
+	
+	
+	
+	public static int hackerlandRadioTransmitters2(List<Integer> x, int k) {
 		// Write your code here
 		int transmitters = 0;
 	    int n=x.size();
@@ -33,7 +90,12 @@ class RadioTransmittersResult {
 			 i++;	//往右找房子，一直到超出覆盖范围后再往左回到上一个房子的位置
 			}
 			transmitters++;//放置一个发射器
+			
+			System.out.println("radio build="+x.get(i-1));
+			System.out.println();
 			radio[i-1]=1;//有发射器的房子标志为1
+			
+		
 			
 			nextrange=x.get(i-1)+k;//现在建好的发射器往右最远可以到达的位置
 
@@ -43,7 +105,7 @@ class RadioTransmittersResult {
 			}
 			
 		}
-		
+		System.out.println("transmitters="+transmitters);
 		return transmitters;
 	}
 		
@@ -109,7 +171,13 @@ public class RadioTransmitters {
         List<Integer> x = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
             .map(Integer::parseInt)
             .collect(toList());
-
+        
+        Collections.sort(x);
+        for(Integer sort:x)
+        {
+        	System.out.print(sort+" ");
+        }
+        System.out.println();
         int result = RadioTransmittersResult.hackerlandRadioTransmitters(x, k);
 
 

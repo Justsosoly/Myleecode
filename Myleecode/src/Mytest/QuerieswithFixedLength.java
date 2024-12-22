@@ -21,9 +21,60 @@ class QuerieswithFixedLengthResult {
 	 * following parameters: 1. INTEGER_ARRAY arr 2. INTEGER_ARRAY queries
 	 */
 
+	//fail the test 2-9 time limit exceeded
+	public static List<Integer> solve3(List<Integer> arr, List<Integer> queries) {
+		    List<Integer> result=new ArrayList<>();	     
+	        int n=arr.size();
+	        int m=queries.size();
+	        	    
+	        for(int k=0;k<m;k++)
+	        {
+	            int q=queries.get(k);
+	            List< List<Integer>> subarray_list=new ArrayList<>();
+	            List<Integer> temp=new ArrayList<>();
+	           //make the subarray   
+	            for(int i=0;i<=n-q;i++)
+	            {
+	               
+	               List<Integer> subarray_q=new ArrayList<>();
+	               int j=i;
+	                while(j<i+q)
+	                {
+	                  
+	                  subarray_q.add(arr.get(j));  
+	                //  System.out.print(arr.get(j)+" "); 
+	                  j++;
+	                } 
+	               //  System.out.println(" "); 
+	                Collections.sort(subarray_q);
+	                subarray_list.add(subarray_q);
+	            }
+
+	          //get the max 
+	          for(List<Integer> list: subarray_list)
+	         {  
+	            temp.add(list.get(q-1));
+	            continue;
+	         }
+
+	          Collections.sort(temp);
+	          
+	         for(Integer e: temp)
+	          {
+	         result.add(e);
+	         break;       
+	          }
+	        }
+	        
+	       return result;
+	}
+	
+	
+	
+	
 	public static List<Integer> solve2(List<Integer> arr, List<Integer> queries) {
 		// Write your code here
-		
+		float f1=new Float("3.0");
 		List<Integer>  queryresult = new ArrayList<Integer> ();
 		
 		int n=arr.size();
@@ -60,25 +111,74 @@ class QuerieswithFixedLengthResult {
 
 		return queryresult;
 	}
-	
+	//pass all the test
 	public static List<Integer> solve(List<Integer> arr, List<Integer> queries) {
 		// Write your code here
 	    List<Integer> result = new ArrayList<>();
         for (int q : queries) {
-            int max = Collections.max(arr.subList(0, q));
-            int min = max;
+            int max = Collections.max(arr.subList(0, q));//第一个q子序列里最大的数
+            int min = max;//在最大的数里，找出一个最小的
             for (int i = q; i < arr.size(); i++) {
-                if (arr.get(i) > max)//
+            	Integer  temp =arr.get(i);
+                if (arr.get(i) > max)//从第q+1个数开始往右找出更大的数
                     max = arr.get(i);
                 else if (arr.get(i - q) == max)
                 	//从最大的那个数往后再找q个数，找出最大的替换掉
-                    max = Collections.max(arr.subList(i - q + 1, i + 1));
+                {
+                	 List<Integer> templist=arr.subList(i - q + 1, i + 1);//在右边离之前max最近的一个q段[]里找出最大的	
+                	max = Collections.max(templist);
+                }
                 min = Math.min(min, max);
             }
             result.add(min);
         }
         return result;
 			
+	}
+	
+	
+	
+	
+	public static List<Integer> solve4(List<Integer> arr, List<Integer> queries) {
+		List<Integer> result = new ArrayList<>();
+        for (int q : queries) {
+            int max = Collections.max( arr.subList(0,q));
+
+            int min = max;
+            int i=q;
+            int index=arr.indexOf(max);
+          while(i<arr.size())
+            {
+              int element=arr.get(i);
+             
+              if(element>max) //如果往右走的数比当前的max大，则更新max
+              {
+            	  max=arr.get(i);
+            	  index=i;
+            	  i++;
+              }
+                
+              else if(element<=max)
+                {
+                   
+            	  if( i==(index+q) )
+                   {
+                	   List<Integer> tempList=arr.subList ( index+1, index+q+1 );
+                	   
+                       max=Collections.max(tempList);
+                       index= tempList.indexOf(max)+index+1;
+                   }
+     
+                  i++;
+                }
+               min=Math.min(max, min);
+               
+            }
+            result.add(min);
+        }
+        return result;
+		
+		
 	}
 
 }

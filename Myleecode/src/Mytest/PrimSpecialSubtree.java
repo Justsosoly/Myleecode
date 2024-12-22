@@ -37,7 +37,7 @@ class PrimSpecialSubtreeResult {
  
     	mst.add(start);
     	int i=0;
-    	List<List<Integer>> pqueback=new ArrayList<List<Integer>>();
+    	List<List<Integer>> pqueback=new ArrayList<List<Integer>>();//没有用上的边都先存放在这
     	
     	while(mst.size()<n)
     	{
@@ -62,13 +62,10 @@ class PrimSpecialSubtreeResult {
     		 }
     		 if(mst.contains(source)&&!mst.contains(target))
     		 {
-    			 
     			 mst.add(target);
     			 result+=weight;
     			// pqueback.clear();
     			 break;
-    			 
-    			 
     		 }
     		 if(!mst.contains(source)&&mst.contains(target))
     		 {
@@ -77,7 +74,7 @@ class PrimSpecialSubtreeResult {
     			// pqueback.clear();
     			 break;
     		 }
-    		 else
+    		 else  //一条边2个端点都没有在mst最小生成树都集合里，则把这条边放到pqueback里以后再处理
     		 {
     			 pqueback.add(curedge);
     			 continue;

@@ -2,15 +2,8 @@ package Mytest;
 
 
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
 import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 
@@ -25,10 +18,46 @@ class PairsResult {
      *  1. INTEGER k
      *  2. INTEGER_ARRAY arr
      */
+	
+	
+	
+	public static int pairs(int k, List<Integer> arr) {
+		 int result=0;
+         int n=arr.size();
+         int left=0;
+         int right=n-1;
+         Collections.sort(arr);
+         System.out.println(arr);
+         //通过left，right 指针进行循环控制
+       for(;right>0;right--)
+         {
+           Integer y=arr.get(right);
+           left=0;
+          
+      
+           while( left<right )
+              {
+        	   Integer x=arr.get(left);
+        	     System.out.println("y="+y+" x="+x);
+        	   if( (y-x)==k)   
+               {
+               	 result++;
+                
+                  break;
+               }
+        	   else
+        	   {
+        		   left++;
+        	   }
+              }
+             
+         }
+         return result;
+	}
 
-    public static int pairs(int k, List<Integer> arr) {
+    public static int pairs2(int k, List<Integer> arr) {
     // Write your code here 
-    	//第一次时间没通过，加排序并得到结果后跳出循环
+    	//全部通过，两个for循环结束，加排序并得到结果后break跳出循环
     	
     	int n=arr.size();
     	int result=0;
@@ -47,16 +76,12 @@ class PairsResult {
     				result++;
     				break;
     			}
-    				
+    			if(Math.abs(x-y)>k)// pass the exceed time limit
+    				break;
     		}
-    		
     	}
-    	
-    	
-    	
         return result;
     }
-
 }
 
 public class Pairs {

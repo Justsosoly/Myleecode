@@ -20,8 +20,95 @@ class CommonChildResult {
      *  1. STRING s1
      *  2. STRING s2
      */
+	//字符串循环少了HARRY，会少了HY这种情况。这个穷举发有问题
+	public static int commonChild(String s1, String s2) {
+		int result=0;
+		int max=0;
+		
+		List<String> lists1=new ArrayList<String>();
+		List<String> lists2=new ArrayList<String>();
+		int n1=s1.length();
+		int n2=s2.length();
+		
+		for(int i=0;i<n1;i++)
+		{
+		   String word=String.valueOf(s1.charAt(i));
+		   
+		     lists1.add(word);
+			
+			for(int j=n1;j>i;j--)
+			{
+				 String temp1=word;
+				 String	temp2=s1.substring(i+1, j);
+				 
+				 for(int k=0;k<temp2.length();k++)
+				 {
+					 temp1+=temp2.charAt(k);
+						
+				     lists1.add(temp1);
+					 
+				 }
+			
+			}
+		
+		}
+		
+	
+		for(int i=0;i<n2;i++)
+		{
+		   String word=String.valueOf(s2.charAt(i));
+		   
+		     lists2.add(word);
+			
+			for(int j=n2;j>i;j--)
+			{
+				 String temp1=word;
+				 String	temp2=s2.substring(i+1, j);
+				 
+				 for(int k=0;k<temp2.length();k++)
+				 {
+					 temp1+=temp2.charAt(k);
+						
+				     lists2.add(temp1);
+					 
+				 }
+			
+			}
+		
+		}
+		
+		
+		
+		
+		
+		for(String str1:lists1)
+		{
+			for(String str2:lists2)
+			{
+				
+				if(str1.equals(str2)) 
+				{
+					
+					result=str1.length();
+					if(result>max)
+					{
+						System.out.println("str1"+str1);
+						System.out.println("result"+result);
+						max=result;
+					}
+				}
+			}
+		}
+		return max;
+	}
+	
+	
+	
+	
+	
+	
 
-    public static int commonChild(String s1, String s2) {
+    public static int commonChild2(String s1, String s2) {
     // Write your code here
     	int result=0;
     	int m=s1.length();

@@ -17,7 +17,63 @@ class TruckTourResult {
      * The function accepts 2D_INTEGER_ARRAY petrolpumps as parameter.
      */
 
-    public static int truckTour(List<List<Integer>> petrolpumps) {
+	 public static int truckTour(List<List<Integer>> petrolpumps) {
+		 
+		 int n=petrolpumps.size();
+	      
+	        int result=0;
+	      
+	        int start=0;
+	        int end=0;
+	        int currpetrol=0;
+	        
+	      while(currpetrol>=0)
+	        {      
+	          int petrol=petrolpumps.get(end).get(0);
+	          int nextdistance=petrolpumps.get(end).get(1);
+	          
+	          currpetrol=currpetrol+petrol-nextdistance;
+	         
+	         if(currpetrol>=0)
+	         {
+	            end++;
+	          if(end>=n)
+	          end=end-n;
+	          
+	          if(start==end) 
+	            {
+	              result=start;
+	              return result;
+	            }
+	         }
+	         else
+	         {
+	            start++;
+	            if(start>=n)
+	            start=start-n;
+	            end=start;
+	            currpetrol=0;
+	         }
+	    
+	    
+	    
+	         
+	          System.out.println("start"+start);
+	          System.out.println("end"+end);
+	          System.out.println("currpetrol"+currpetrol);
+	          
+	          
+	         
+	         }
+
+	        return result;
+		 
+		 
+	 }
+	
+	
+	
+    public static int truckTour2(List<List<Integer>> petrolpumps) {
     // Write your code here
     	
            int petrolsum=0;
@@ -35,21 +91,16 @@ class TruckTourResult {
         	  
         	    if(petrolsum>=0)
                   {
-                 
         		  end=(end+1)%pumpnum;   //这个加油站可以继续往后走一站
-        		    if(end==start)      //相同，则说明可以走一圈
+        		  if(end==start)      //相同，则说明可以走一圈
         		    	return start;
-        		  
                   }
                   else       //说明汽油不够，从下一个加油站开始
                   {
                   start=(start+1)%pumpnum;
                   end=start;
                   petrolsum=0;
-                 
                   }
-                 
-        	  
            }
            return -1;
     }

@@ -25,15 +25,17 @@ class NewYearChaosResult {
 		int swapcount = 0;
 		for (int i = 0; i < q.size(); i++) {
 			
+			int cur=q.get(i);
 			
-			if((q.get(i)-i-1)>2)
+			
+			if((cur-i-1)>2)
 		    {
 			System.out.println("Too chaotic");
 			return;
 		    }	
 			
 			
-			int j=(q.get(i)-2>0?q.get(i)-2:0);
+			int j=(cur-2>0?cur-2:0);//不用全部从开始遍历
 			
 			for(;j<i;j++)
 			{	
@@ -47,14 +49,6 @@ class NewYearChaosResult {
 
 		System.out.println(swapcount);
 
-	}
-
-	public static void swap(List<Integer> q, int index) {
-		int x = q.get(index);
-		int y = q.get(index + 1);
-
-		q.set(index, y);
-		q.set(index + 1, x);
 	}
 
 }

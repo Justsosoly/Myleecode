@@ -96,6 +96,10 @@ class Result {
            System.out.println("the reverse node is:"+reverseNode.data);
            reverseNode=reverseNode.next;
     	}
+    	
+    	
+    	
+		
     	return reverseNode;
     	
     }

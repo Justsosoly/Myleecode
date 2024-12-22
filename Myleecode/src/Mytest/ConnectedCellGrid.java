@@ -37,18 +37,43 @@ class ConnectedCellGridResult {
     	   {
     		   if(matrix.get(i).get(j)==1)
     		   {
-    			   result++;
+    			   System.out.println("search the grid["+i+"]["+j+"]");
+    			   result=Math.max(result,getgridnum(matrix,i,j)); 
+    			   
     		   }
-    		   
     	   }
        
-       
-       
-       
        return result;
-      
-
     }
+    
+	public static int getgridnum(List<List<Integer>> matrix, int r, int c) {
+		int num = 1;
+		int row = matrix.size();// row
+		int column = matrix.get(0).size();// column
+	    
+		if(r>=row||c>=column||r<0||c<0)//超过了边界的都为0
+			return 0;
+		
+		if(matrix.get(r).get(c)==0)
+			return 0;
+		
+	    matrix.get(r).set(c, 0);//将matrix[r][c]设置为0，则下次在connectedCell中则不会再进入迭代
+			                    //没有return，则会再次进入下面的2个for循环
+		
+		for(int i=r-1;i<=r+1;i++)
+			for(int j=c-1;j<=c+1;j++)
+			{
+				if(i!=r||j!=c)//||则是刨去中间一个点，&&的话则是刨去中心十字，只有4个
+				{
+				num+=getgridnum(matrix,i,j);
+				System.out.println("the getgrid["+i+"]["+j+"]num is "+num);
+				}
+			}	
+		
+
+		return num;
+
+	}
 
 }
 

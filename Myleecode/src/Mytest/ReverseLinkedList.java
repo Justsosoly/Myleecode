@@ -69,7 +69,7 @@ public static class Result {
      *
      */
 
-    public static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+    public static SinglyLinkedListNode reverse2(SinglyLinkedListNode head) {
     // Write your code here
     	SinglyLinkedListNode reversehead=null;
     	
@@ -99,7 +99,30 @@ public static class Result {
     	
     	return reversehead;
 
+    	
     }
+    //pass the test
+    public static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+        // Write your code here
+    	SinglyLinkedListNode reverseNode=null;
+    	//reverseNode.next=null;
+        while(head!=null)
+        {
+          SinglyLinkedListNode node=head; 
+          
+          head=head.next;
+          
+          node.next=reverseNode;
+          
+          reverseNode=node;
+                   
+          
+        }
+        
+        
+        return reverseNode;   
+
+        }
 
 }
 

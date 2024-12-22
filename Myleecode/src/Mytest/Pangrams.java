@@ -17,7 +17,7 @@ class Pangrams {
      * The function accepts STRING s as parameter.
      */
 
-    public static String pangrams(String s) {
+    public static String pangrams2(String s) {
         
     // Write your code here
    
@@ -66,6 +66,73 @@ class Pangrams {
     
     }
 
+    
+    public static String pangrams(String s) {
+ 
+    	
+    	Map<String,Integer> map=new HashMap<String,Integer>();
+        for(int i=0;i<s.length();i++)
+        {
+          char letter=s.charAt(i);
+          String le="";
+          
+          if(letter>='A'&&letter<='Z'||letter>='a'&&letter<='z')
+          {
+          
+          if(letter>='A'&&letter<='Z')
+          le= String.valueOf(letter).toLowerCase() ;
+        
+          else
+          if(letter>='a'&&letter<='z')
+    	   le=String.valueOf(letter);
+          
+       
+         if(map.get(le)==null)             // first put to the map
+         {
+              map.put(le,1);
+         } 
+         else //not the first put to map
+        {
+          map.put(le,map.get(le)+1);
+        }
+        
+          }
+         
+        }//end for
+        
+        
+        
+        
+        
+        /*
+        Iterator<Map.Entry<String,Integer>> it=map.entrySet().iterator();
+        while(it.hasNext())
+        {
+            
+        	Map.Entry<String, Integer> entry=it.next();
+        	
+        	System.out.println("key:"+entry.getKey());
+            System.out.println("value:"+entry.getValue());
+        }
+        */
+       
+        int count=0;
+        
+        /*
+        for(Map.Entry<String, Integer> entry:map.entrySet())
+        {
+        	String key=entry.getKey();
+        	int value=entry.getValue();
+        	
+        }
+        */
+        
+        if(map.size()==26) 
+		return "pangram";
+        else
+        return "no pangram";
+	}
+    
 
 
 

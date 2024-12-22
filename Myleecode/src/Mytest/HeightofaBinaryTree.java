@@ -10,25 +10,25 @@ class HeightofaBinaryTree {
 	public static int height(Node root) {
       	// Write your code here.
 	
-//		if(root.left!=null)
-//		{
-//			height(root.left);
-//			leftheight++;
-//			
-//			System.out.println(root.data+" leftheight is :"+leftheight);
-//		}
-//			
-//		if(root.right!=null)
-//		{
-//			height(root.right);
-//			rightheight++;
-//			System.out.println(root.data+" rightheight is :"+rightheight);
-//		}
-
+		 int height=0;
+	        if(root==null)
+	        {
+	          return 0;
+	        }
+	        else
+	        {
+	          if(root.left!=null)
+	          height=height(root.left)+1;
+	          
+	          if(root.right!=null)
+	          height= height(root.right)+1;
+	          
+	        }
+	        
+	        return height;
 		
-	return root!=null? Math.max(height(root.left)+1, height(root.right)+1):-1;
+	//return root!=null? Math.max(height(root.left)+1, height(root.right)+1):-1;
 		
-	//	return Math.max(rightheight, leftheight);
     }
 
 	public static Node insert(Node root, int data) {
@@ -37,7 +37,7 @@ class HeightofaBinaryTree {
         } else {
             Node cur;
             if(data <= root.data) {
-                cur = insert(root.left, data);
+                cur = insert(root.left, data);//新建左节点给cur
                 root.left = cur;
             } else {
                 cur = insert(root.right, data);

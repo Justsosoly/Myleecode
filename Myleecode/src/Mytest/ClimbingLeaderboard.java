@@ -23,10 +23,78 @@ class Result {
      *  1. INTEGER_ARRAY ranked
      *  2. INTEGER_ARRAY player
      */
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+//	Time limit exceeded
+	public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+	    // Write your code here
+	    List<Integer> result=new ArrayList<Integer>();
+	    for(int i=0;i<player.size();i++)
+	    {
+	      int p=player.get(i);
+	      int count=0;
+	      int temp=-1;
+	      
+	        for(int j=0;j<ranked.size();j++)
+	         {
+	           int r=ranked.get(j);
+	           if(temp!=r) 
+	        	   count++;
+	           
+	               temp=r;
+	         
+	           if(p<r) 
+	           {
+	        	   if(j==ranked.size()-1) //the last one
+	        	   {
+	        		   count++;
+	        		   ranked.add(p);
+	        		   break;
+	        	   }
+	        	   
+	        	   continue;
+		           
+	           } 
+	        	   
+	          
+	           if(p>=r)
+	           {
+	        	   List<Integer> list=new ArrayList<Integer>();
+	        	   List<Integer> templist=new ArrayList<Integer>();
+	        	   List<Integer> templistafter=new ArrayList<Integer>();
+	        	   int n=ranked.size();
+	        	   templist=ranked.subList(0,j);
+	        	   templistafter=ranked.subList(j,n);
+	        	
+	        	  
+	        	   list.addAll(templist);
+	        	   list.add(p);
+	        	   list.addAll(templistafter);
+	        	   ranked=list;
+	        	   break;
+	           }
+    
+	         }
+	      result.add(count);
+	      
+	    }
+	    return result;
 
-    public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+	    }
+
+    public static List<Integer> climbingLeaderboard2(List<Integer> ranked, List<Integer> player) {
     // Write your code here
     List<Integer> playerflag=new ArrayList<Integer>();
+    
+    
     List<Integer> flag=new ArrayList<Integer>();
     int count=1;
     int rankednum=ranked.size();
@@ -35,7 +103,6 @@ class Result {
    
     //flag reflects the ranked list ranking.like 1,2,2,3
     flag.add(0, count);
- //   System.out.println("the fault leaderboard is"+flag.get(0));
     for(int m=1;m<rankednum;m++)
     {
       if(ranked.get(m)<ranked.get(m-1))
@@ -44,7 +111,6 @@ class Result {
       }  
       flag.add(m,count);
       
-  //    System.out.println("the fault leaderboard is"+flag.get(m));
       
     }
     
@@ -83,38 +149,6 @@ class Result {
     for(int temp:playerflag)
     	
     	System.out.println("the new ranking is "+temp);
-    /*
-    for(int j=0;j<playernum;j++)
-    {
-    	
-    	for(int i=0;i<rankednum;i++)
-    	
-    	{
-    		if(player.get(j)>=ranked.get(i))
-    			
-    		{
-    			int temp= flag.get(i);
-    			playerflag.add(j,temp);
-    			break;
-    			
-    		}
-    		else if(i==(rankednum-1))
-    		{
-    			int temp=flag.get(rankednum-1)+1;
-    			playerflag.add(j,temp);
-    		}
-    		
-    		
-    	}
-    	
-    }	
-    */
-    
-  
-    
-    
-    
-    
      return playerflag;
     }
     
